@@ -1,9 +1,8 @@
 package com.example.hibernatedemo;
 
 import com.example.hibernatedemo.dao.ItemDao;
-import com.example.hibernatedemo.entity.Item;
+import com.example.hibernatedemo.entity.Test;
 import io.vavr.API;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,23 +18,23 @@ public class HibernateDemoApplicationTests {
 
 	private ItemDao itemDao;
 
-	@Test
+	@org.junit.Test
 	public void contextLoads() {
 	}
 
-	@Test
+	@org.junit.Test
 	public void insert() throws Exception {
 		IntStream.range(0, 30).forEach(j -> {
-			List<Item> items = new ArrayList<>();
+			List<Test> tests = new ArrayList<>();
 			IntStream.range(0, 30).forEach(i -> {
-				Item item = new Item();
-				item.setName("name " + i);
-				item.setDetail("detail " + i);
-				items.add(item);
+				Test test = new Test();
+				test.setName("name " + i);
+				test.setDetail("detail " + i);
+				tests.add(test);
 			});
 
 			API.unchecked(this::sleep);
-			itemDao.save(items);
+			itemDao.save(tests);
 		});
 	}
 
@@ -44,24 +43,24 @@ public class HibernateDemoApplicationTests {
 		return true;
 	}
 
-	@Test
+	@org.junit.Test
 	public void simpleInsert() throws Exception {
-		List<Item> items = new ArrayList<>();
+		List<Test> tests = new ArrayList<>();
 		IntStream.range(0, 30).forEach(i -> {
-					Item item = new Item();
-					item.setName("name");
-					item.setDetail("detail");
-					items.add(item);
+					Test test = new Test();
+					test.setName("name");
+					test.setDetail("detail");
+					tests.add(test);
 
 				});
-		for(Item item : items) {
-			itemDao.save(item);
+		for(Test test : tests) {
+			itemDao.save(test);
 		}
 
 	}
 
 
-	@Test
+	@org.junit.Test
 	public void select() throws Exception {
 		itemDao.findAll();
 	}

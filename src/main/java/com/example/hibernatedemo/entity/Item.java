@@ -1,46 +1,50 @@
 package com.example.hibernatedemo.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import java.util.List;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
  */
 
 @Entity
+@Table(name = "item")
 public class Item {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pooled")
-//	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
-	@GenericGenerator(
-			name = "pooled",
-			//strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-			strategy = "enhanced-sequence",
-			parameters = {
-					@Parameter(name = "sequence_name", value = "item_id_seq"),
-					@Parameter(name = "initial_value", value = "1"),
-					@Parameter(name = "increment_size", value = "3"),
-					@Parameter(name = "optimizer", value = "pooled-lo")
-			}
-	)
-	public long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_id_seq")
+	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
+//	@GenericGenerator(
+//			name = "pooled",
+//			strategy = "org.hibernate.itemId.enhanced.SequenceStyleGenerator",
+//			parameters = {
+//					@Parameter(name = "sequence_name", value = "item_id_seq"),
+//					@Parameter(name = "initial_value", value = "1"),
+//					@Parameter(name = "increment_size", value = "3"),
+//					@Parameter(name = "optimizer", value = "pooled-lo")
+//			}
+//	)
+
+	private Long itemId;
 
 	private String name;
 
-	private String detail;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private List<ItemDetail> itemDetails;
 
-	public long getId() {
-		return id;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public String getName() {
@@ -51,11 +55,11 @@ public class Item {
 		this.name = name;
 	}
 
-	public String getDetail() {
-		return detail;
+	public List<ItemDetail> getItemDetails() {
+		return itemDetails;
 	}
 
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setItemDetails(List<ItemDetail> itemDetails) {
+		this.itemDetails = itemDetails;
 	}
 }
