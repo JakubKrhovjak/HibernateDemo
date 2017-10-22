@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
@@ -53,14 +56,26 @@ public class RelationTest {
 
 	@Test
 	public void manyToMany() throws Exception {
+		itemDao.save(createItem());
+	}
+
+	@Test
+	public void testTest() throws Exception {
+		List<Item> items = new ArrayList<>();
+		IntStream.range(0, 20).forEach(i -> items.add(createItem()));
+       / items.forEach(item -> itemDao.save(item));
+		itemDao.save(items);
+	}
+
+
+	private Item createItem() {
 		Item item = new Item();
 		item.setName("itemName");
 
 		Custom custom = new Custom();
 		custom.setName("custom name");
 		item.addCustom(custom);
-		itemDao.save(item);
-
+		return item;
 	}
 
 	@Test

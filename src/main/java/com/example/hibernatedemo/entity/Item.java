@@ -1,5 +1,8 @@
 package com.example.hibernatedemo.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.UniqueConstraint;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +27,18 @@ import java.util.List;
 public class Item {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_id_seq")
-	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
-//	@GenericGenerator(
-//			name = "pooled",
-//			strategy = "org.hibernate.itemId.enhanced.SequenceStyleGenerator",
-//			parameters = {
-//					@Parameter(name = "sequence_name", value = "item_id_seq"),
-//					@Parameter(name = "initial_value", value = "1"),
-//					@Parameter(name = "increment_size", value = "3"),
-//					@Parameter(name = "optimizer", value = "pooled-lo")
-//			}
-//	)
-
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pooled")
+//	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
+	@GenericGenerator(
+			name = "pooled",
+			strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+			parameters = {
+					@Parameter(name = "sequence_name", value = "item_id_seq"),
+					@Parameter(name = "initial_value", value = "1"),
+					@Parameter(name = "increment_size", value = "3"),
+					@Parameter(name = "optimizer", value = "pooled-lo")
+			}
+	)
 	private Long itemId;
 
 	private String name;
