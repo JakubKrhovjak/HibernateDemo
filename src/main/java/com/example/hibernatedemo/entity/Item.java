@@ -43,7 +43,7 @@ public class Item {
 
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private List<ItemDetail> itemDetails;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })

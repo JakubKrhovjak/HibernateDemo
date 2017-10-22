@@ -2,7 +2,6 @@ package com.example.hibernatedemo.entity;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import java.io.Serializable;
@@ -11,7 +10,7 @@ import java.util.Objects;
 /**
  * Created by Jakub krhovják on 10/22/17.
  */
-@Entity
+//@Entity
 public class ItemCustom {
 
 	@EmbeddedId
