@@ -1,6 +1,6 @@
 package com.example.hibernatedemo;
 
-import com.example.hibernatedemo.dao.ItemDao;
+import com.example.hibernatedemo.dao.TestDao;
 import com.example.hibernatedemo.entity.Test;
 import io.vavr.API;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 @SpringBootTest
 public class HibernateDemoApplicationTests {
 
-	private ItemDao itemDao;
+	private TestDao testDao;
 
 	@org.junit.Test
 	public void contextLoads() {
@@ -34,7 +34,7 @@ public class HibernateDemoApplicationTests {
 			});
 
 			API.unchecked(this::sleep);
-			itemDao.save(tests);
+			testDao.save(tests);
 		});
 	}
 
@@ -54,7 +54,7 @@ public class HibernateDemoApplicationTests {
 
 				});
 		for(Test test : tests) {
-			itemDao.save(test);
+			testDao.save(test);
 		}
 
 	}
@@ -62,11 +62,11 @@ public class HibernateDemoApplicationTests {
 
 	@org.junit.Test
 	public void select() throws Exception {
-		itemDao.findAll();
+		testDao.findAll();
 	}
 
 	@Autowired
-	public void setItemDao(ItemDao itemDao) {
-		this.itemDao = itemDao;
+	public void setTestDao(TestDao testDao) {
+		this.testDao = testDao;
 	}
 }

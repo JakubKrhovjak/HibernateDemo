@@ -1,10 +1,10 @@
 package com.example.hibernatedemo.dao;
 
-import com.example.hibernatedemo.entity.Test;
+import com.example.hibernatedemo.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by Jakub krhovják on 10/21/17.
+ * Created by Jakub krhovják on 10/22/17.
  */
-public interface ItemDao extends JpaRepository <Test, Long>{
+public interface ItemDao extends JpaRepository<Item, Long> {
 }
