@@ -33,12 +33,12 @@ public class RelationTest {
 		ItemDetail itemDetail = new ItemDetail();
 		itemDetail.setDescription("detail description2");
 		itemDetail.setItem(item);
+//
+//		ItemDetail itemDetail2 = new ItemDetail();
+//		itemDetail2.setDescription("detail description1");
+//		itemDetail2.setItem(item);
 
-		ItemDetail itemDetail2 = new ItemDetail();
-		itemDetail2.setDescription("detail description1");
-		itemDetail2.setItem(item);
-
-		item.setItemDetails(Arrays.asList(itemDetail, itemDetail2));
+		item.setItemDetails(Arrays.asList(itemDetail));
 
 		itemDao.saveAndFlush(item);
 //		List<ItemDetail> details = itemDao.findAll().iterator().next().getItemDetails();
@@ -63,7 +63,7 @@ public class RelationTest {
 	public void testTest() throws Exception {
 		List<Item> items = new ArrayList<>();
 		IntStream.range(0, 20).forEach(i -> items.add(createItem()));
-       / items.forEach(item -> itemDao.save(item));
+       //items.forEach(item -> itemDao.save(item));
 		itemDao.save(items);
 	}
 

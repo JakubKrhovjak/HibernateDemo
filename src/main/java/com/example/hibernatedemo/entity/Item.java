@@ -43,7 +43,7 @@ public class Item {
 
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private List<ItemDetail> itemDetails;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -52,6 +52,8 @@ public class Item {
 			joinColumns = @JoinColumn(name = "item_id", foreignKey = @ForeignKey(name ="item_custom_custom_fkey" )),
 			inverseJoinColumns = @JoinColumn(name = "custom_id",foreignKey = @ForeignKey(name = "item_custom_item_id_fkey"))
 	)
+
+	//@OneToMany(mappedBy = "item",  cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Custom> customs = new ArrayList<>();
 
 	public Long getItemId() {

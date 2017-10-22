@@ -1,5 +1,6 @@
 package com.example.hibernatedemo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,8 @@ public class Custom {
 
 	private String name;
 
-	@ManyToMany(mappedBy = "customs")
+	@ManyToMany(mappedBy = "customs", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+//	@OneToMany(mappedBy = "custom",  cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Item> items = new ArrayList<>();
 
 	public Long getCustomId() {
