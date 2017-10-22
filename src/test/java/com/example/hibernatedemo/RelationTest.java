@@ -1,6 +1,7 @@
 package com.example.hibernatedemo;
 
 import com.example.hibernatedemo.dao.ItemDao;
+import com.example.hibernatedemo.entity.Custom;
 import com.example.hibernatedemo.entity.Item;
 import com.example.hibernatedemo.entity.ItemDetail;
 import org.junit.Test;
@@ -48,6 +49,23 @@ public class RelationTest {
 	@Test
 	public void select() throws Exception {
 		itemDao.findAll();
+	}
+
+	@Test
+	public void manyToMany() throws Exception {
+		Item item = new Item();
+		item.setName("itemName");
+
+		Custom custom = new Custom();
+		custom.setName("custom name");
+		item.addCustom(custom);
+		itemDao.save(item);
+
+	}
+
+	@Test
+	public void deleteManyTo() throws Exception {
+		itemDao.delete(itemDao.findAll().iterator().next());
 	}
 
 	@Autowired

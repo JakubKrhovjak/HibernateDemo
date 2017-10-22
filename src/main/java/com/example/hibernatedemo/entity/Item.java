@@ -3,11 +3,17 @@ package com.example.hibernatedemo.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.UniqueConstraint;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +45,14 @@ public class Item {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
 	private List<ItemDetail> itemDetails;
 
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "item_custom",
+			uniqueConstraints = {@UniqueConstraint(name = "item_custom_pkey", columnNames = {"item_id", "custom_id"})},
+			joinColumns = @JoinColumn(name = "item_id", foreignKey = @ForeignKey(name ="item_custom_custom_fkey" )),
+			inverseJoinColumns = @JoinColumn(name = "custom_id",foreignKey = @ForeignKey(name = "item_custom_item_id_fkey"))
+	)
+	private List<Custom> customs = new ArrayList<>();
+
 	public Long getItemId() {
 		return itemId;
 	}
@@ -61,5 +75,17 @@ public class Item {
 
 	public void setItemDetails(List<ItemDetail> itemDetails) {
 		this.itemDetails = itemDetails;
+	}
+
+	public List<Custom> getCustoms() {
+		return customs;
+	}
+
+	public void setCustoms(List<Custom> customs) {
+		this.customs = customs;
+	}
+
+	public void addCustom(Custom custom) {
+		customs.add(custom);
 	}
 }
