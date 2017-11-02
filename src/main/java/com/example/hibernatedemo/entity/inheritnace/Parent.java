@@ -1,7 +1,10 @@
 package com.example.hibernatedemo.entity.inheritnace;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +24,10 @@ public abstract class Parent {
 	@SequenceGenerator(allocationSize = 1, name = "parent_id_seq", sequenceName = "parent_id_seq")
 	private Long id;
 
+	@Column(insertable = false, updatable = false)
+	@Enumerated(EnumType.STRING)
+	private ChildType type;
+
 	private String firstName;
 
 	public Long getId() {
@@ -37,5 +44,13 @@ public abstract class Parent {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public ChildType getType() {
+		return type;
+	}
+
+	public enum ChildType {
+		NAUGHTY_CHILD, GOOD_CHILD;
 	}
 }

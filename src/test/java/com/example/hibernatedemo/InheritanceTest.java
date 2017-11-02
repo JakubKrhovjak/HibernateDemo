@@ -38,6 +38,11 @@ public class InheritanceTest {
 	@Test
 	public void select() throws Exception {
 		List<Parent> parents = parentDao.findAll();
+		parents.forEach(parent -> {
+			if(Parent.ChildType.GOOD_CHILD == parent.getType()) {
+				System.err.println(parent.getFirstName());
+			}
+		});
 
 	}
 
