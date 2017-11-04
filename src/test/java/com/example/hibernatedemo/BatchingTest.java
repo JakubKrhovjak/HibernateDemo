@@ -116,8 +116,8 @@ public class BatchingTest extends  HibernateDemoApplicationTests {
 		item.setItemDetails(getDetails(item));
 
 		itemDao.save(item);
-		itemDao.deleteByItemId(item.getItemId());
-//		itemDao.delete(item);
+	//	itemDao.deleteByItemId(item.getItemId());
+		itemDao.delete(item);
 		//		List<ItemDetail> details = itemDao.findAll().iterator().next().getItemDetails();
 	}
 
