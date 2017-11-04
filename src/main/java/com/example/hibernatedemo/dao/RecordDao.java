@@ -1,10 +1,14 @@
 package com.example.hibernatedemo.dao;
 
+import com.example.hibernatedemo.dto.RecordDto;
 import com.example.hibernatedemo.entity.Record;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 
 import javax.persistence.QueryHint;
+import java.util.List;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
@@ -15,4 +19,7 @@ public interface RecordDao extends JpaRepository <Record, Long>{
 	public default void mySave(Record record) {
 		save(record);
 	}
+
+	@Query("select new com.example.hibernatedemo.dto.RecordDto(r.id, r.name) from Record r ")
+	List<RecordDto> getRecordDtos(Pageable pageable);
 }

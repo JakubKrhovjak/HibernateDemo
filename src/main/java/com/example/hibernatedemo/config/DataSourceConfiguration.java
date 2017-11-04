@@ -58,9 +58,9 @@ public class DataSourceConfiguration {
 	public Properties additionalProperties() {
 		Properties properties = new Properties();
 ////
-		properties.setProperty("hibernate.order_updates", "true");
-		properties.setProperty("hibernate.order_inserts", "true");
-		properties.setProperty("hibernate.jdbc.batch_size", "10");
+//		properties.setProperty("hibernate.order_updates", "true");
+//		properties.setProperty("hibernate.order_inserts", "true");
+//		properties.setProperty("hibernate.jdbc.batch_size", "10");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.generate_statistics", "true");
 		properties.setProperty("hibernate.format_sql", "true");

@@ -57,4 +57,6 @@ public class Record {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+
+
 }

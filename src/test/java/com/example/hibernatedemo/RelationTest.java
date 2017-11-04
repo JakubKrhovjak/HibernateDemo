@@ -46,6 +46,7 @@ public class RelationTest extends HibernateDemoApplicationTests {
 	}
 
 	@Test
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	public void select() throws Exception {
 		itemDao.findAll();
 	}
