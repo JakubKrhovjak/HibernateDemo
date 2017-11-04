@@ -5,11 +5,9 @@ import com.example.hibernatedemo.entity.Custom;
 import com.example.hibernatedemo.entity.Item;
 import com.example.hibernatedemo.entity.ItemDetail;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,9 +17,7 @@ import java.util.stream.IntStream;
  * Created by Jakub krhovják on 10/21/17.
  */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class RelationTest {
+public class RelationTest extends HibernateDemoApplicationTests {
 
 	private ItemDao itemDao;
 
@@ -67,6 +63,14 @@ public class RelationTest {
 		itemDao.save(items);
 	}
 
+	@Test
+	@Transactional
+	public void lazyLoadTest() throws Exception {
+		//oneToManyTest();
+		Item item = itemDao.findAll().iterator().next();
+		item.getItemDetails().iterator().next();
+
+	}
 
 	private Item createItem() {
 		Item item = new Item();
@@ -75,6 +79,7 @@ public class RelationTest {
 		Custom custom = new Custom();
 		custom.setName("custom name");
 		item.addCustom(custom);
+
 		return item;
 	}
 

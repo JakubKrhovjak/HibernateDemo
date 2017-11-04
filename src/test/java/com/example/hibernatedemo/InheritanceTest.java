@@ -5,10 +5,7 @@ import com.example.hibernatedemo.entity.inheritnace.GoodChild;
 import com.example.hibernatedemo.entity.inheritnace.NaughtyChild;
 import com.example.hibernatedemo.entity.inheritnace.Parent;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,11 +14,8 @@ import java.util.List;
 /**
  * Created by Jakub krhovják on 11/2/17.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class InheritanceTest {
 
-	private ParentDao parentDao;
+public class InheritanceTest extends HibernateDemoApplicationTests {
 
 	@Test
 	public void insert() throws Exception {
@@ -30,7 +24,7 @@ public class InheritanceTest {
 		goodChild.setAge(2);
 
 		NaughtyChild naughtyChild = new NaughtyChild();
-		naughtyChild.setFirstName("goodChild");
+		naughtyChild.setFirstName("naughtyChild");
 		naughtyChild.setAttribute("Devil");
 		parentDao.save(new ArrayList<>(Arrays.asList(goodChild, naughtyChild)));
 	}
