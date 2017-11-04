@@ -57,10 +57,16 @@ public class DataSourceConfiguration {
 
 	public Properties additionalProperties() {
 		Properties properties = new Properties();
+////
+		properties.setProperty("hibernate.order_updates", "true");
+		properties.setProperty("hibernate.order_inserts", "true");
 		properties.setProperty("hibernate.jdbc.batch_size", "10");
-		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.generate_statistics", "true");
 		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.naming.physical-strategy", "com.example.hibernatedemo.strategy.PhysicalNamingStrategyImpl");
+
+
 		return properties;
 	}
 
@@ -72,9 +78,5 @@ public class DataSourceConfiguration {
 		return transactionManager;
 	}
 
-	@Bean
-	public HibernateJpaSessionFactoryBean sessionFactory() {
-		return new HibernateJpaSessionFactoryBean();
-	}
 
 }

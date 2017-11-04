@@ -3,6 +3,7 @@ package com.example.hibernatedemo.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import javax.persistence.SequenceGenerator;
  * Created by Jakub krhovják on 10/21/17.
  */
 
-@Entity
+@Entity(name = "itemDetail")
 public class ItemDetail {
 
 	@Id
@@ -28,11 +29,11 @@ public class ItemDetail {
 			parameters = {
 					@Parameter(name = "sequence_name", value = "item_detail_id_seq"),
 					@Parameter(name = "initial_value", value = "1"),
-					@Parameter(name = "increment_size", value = "3"),
+					@Parameter(name = "increment_size", value = "10"),
 					@Parameter(name = "optimizer", value = "pooled-lo")
 			}
 	)
-
+	@Column(name = "item_detail_id")
 	private Long itemDetailId;
 
 	private String description;

@@ -1,5 +1,6 @@
 package com.example.hibernatedemo;
 
+import com.example.hibernatedemo.dao.ItemDao;
 import com.example.hibernatedemo.dao.ParentDao;
 import com.example.hibernatedemo.dao.RecordDao;
 import com.example.hibernatedemo.entity.Record;
@@ -22,6 +23,8 @@ public class HibernateDemoApplicationTests {
 	protected RecordDao recordDao;
 
 	protected ParentDao parentDao;
+
+	protected ItemDao itemDao;
 
 //	@Bean(destroyMethod = "close")
 //	public DataSource dataSource(){
@@ -116,5 +119,10 @@ public class HibernateDemoApplicationTests {
 	@Autowired
 	public void setParentDao(ParentDao parentDao) {
 		this.parentDao = parentDao;
+	}
+
+	@Autowired
+	public void setItemDao(ItemDao itemDao) {
+		this.itemDao = itemDao;
 	}
 }

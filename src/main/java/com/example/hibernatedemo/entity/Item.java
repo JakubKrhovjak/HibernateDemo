@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -39,6 +40,7 @@ public class Item {
 					@Parameter(name = "optimizer", value = "pooled-lo")
 			}
 	)
+	@Column(name = "item_id")
 	private Long itemId;
 
 	private String name;
