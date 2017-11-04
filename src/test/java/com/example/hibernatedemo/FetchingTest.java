@@ -16,4 +16,12 @@ public class FetchingTest extends HibernateDemoApplicationTests {
 		Pageable topTen = new PageRequest(0, 10);
 		List<RecordDto> recordDtos = recordDao.getRecordDtos(topTen);
 	}
+
+
+	@Test
+	public void nativeDto() throws Exception {
+		Pageable topTen = new PageRequest(0, 10);
+		recordDao.getNativeRecordDtos();
+//		List<RecordDto> recordDtos = recordDao.getNativeRecordDtos();
+	}
 }
