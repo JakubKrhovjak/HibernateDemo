@@ -57,10 +57,14 @@ public class DataSourceConfiguration {
 
 	public Properties additionalProperties() {
 		Properties properties = new Properties();
-////
-//		properties.setProperty("hibernate.order_updates", "true");
-//		properties.setProperty("hibernate.order_inserts", "true");
-//		properties.setProperty("hibernate.jdbc.batch_size", "10");
+
+//      Default values
+//		properties.setProperty("hibernate.query.plan_cache_max_size","2048");
+//		properties.setProperty("hibernate.query.plan_parameter_metadata_max_si","128");
+
+		properties.setProperty("hibernate.order_updates", "true");
+		properties.setProperty("hibernate.order_inserts", "true");
+		properties.setProperty("hibernate.jdbc.batch_size", "10");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.generate_statistics", "true");
 		properties.setProperty("hibernate.format_sql", "true");

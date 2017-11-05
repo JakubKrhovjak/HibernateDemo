@@ -99,6 +99,8 @@
 					<execution>
 						<configuration>
 							<enableDirtyTracking>true</enableDirtyTracking>
+							<failOnError>true</failOnError>
+							<enableLazyInitialization>true</enableLazyInitialization>
 						</configuration>
 						<goals>
 							<goal>enhance</goal>

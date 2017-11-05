@@ -1,6 +1,7 @@
 package com.example.hibernatedemo;
 
 import com.example.hibernatedemo.dao.ItemDao;
+import com.example.hibernatedemo.dao.ItemDetailDao;
 import com.example.hibernatedemo.dao.ParentDao;
 import com.example.hibernatedemo.dao.RecordDao;
 import com.example.hibernatedemo.entity.Record;
@@ -26,40 +27,8 @@ public class HibernateDemoApplicationTests {
 
 	protected ItemDao itemDao;
 
-//	@Bean(destroyMethod = "close")
-//	public DataSource dataSource(){
-//		HikariConfig hikariConfig = new HikariConfig();
-//		hikariConfig.setDriverClassName("org.postgresql.Driver");
-//		hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
-//		hikariConfig.setUsername("postgres");
-//		hikariConfig.setPassword("heslo");
-//
-//		hikariConfig.setMaximumPoolSize(3);
-//		hikariConfig.setIdleTimeout(5000);
-//		hikariConfig.setConnectionTestQuery("SELECT 1");
-//		hikariConfig.setPoolName("springHikariCP");
-//
-//		hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
-//		hikariConfig.addDataSourceProperty("prepStmtCacheSize", "250");
-//		hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-//		hikariConfig.addDataSourceProperty("useServerPrepStmts", "true");
-//
-//		return new HikariDataSource(hikariConfig);
-//
-//
-//	}
+	protected ItemDetailDao itemDetailDao;
 
-//	@Bean
-//	public TransactionManager transactionManager() {
-//		HibernateTransactionManager manager = new HibernateTransactionManager();
-//		manager.setDataSource(dataSource());
-//		manager.setSessionFactory();
-//	}
-//
-//	@Bean
-//	public SessionFactory sessionFactory() {
-//		return new SessionFactoryImpl();
-//	}
 
 	public void contextLoads() {
 	}
@@ -124,5 +93,10 @@ public class HibernateDemoApplicationTests {
 	@Autowired
 	public void setItemDao(ItemDao itemDao) {
 		this.itemDao = itemDao;
+	}
+
+	@Autowired
+	public void setItemDetailDao(ItemDetailDao itemDetailDao) {
+		this.itemDetailDao = itemDetailDao;
 	}
 }
