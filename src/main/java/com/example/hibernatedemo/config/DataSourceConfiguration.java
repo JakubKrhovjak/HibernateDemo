@@ -2,18 +2,19 @@ package com.example.hibernatedemo.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Properties;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
@@ -27,7 +28,7 @@ public class DataSourceConfiguration {
 		hikariConfig.setDriverClassName("org.postgresql.Driver");
 		hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
 		hikariConfig.setUsername("postgres");
-		hikariConfig.setPassword("heslo");
+		hikariConfig.setPassword("wnwallet");
 
 		hikariConfig.setMaximumPoolSize(3);
 		hikariConfig.setIdleTimeout(5000);

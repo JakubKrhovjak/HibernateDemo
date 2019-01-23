@@ -1,5 +1,12 @@
 package com.example.hibernatedemo.entity;
 
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
+import org.hibernate.envers.Audited;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jakub krhovják on 10/22/17.
  */
 @Entity
-
+@Audited(targetAuditMode = NOT_AUDITED)
 public class Custom {
 
 	@Id

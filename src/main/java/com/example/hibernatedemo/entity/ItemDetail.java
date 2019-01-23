@@ -1,7 +1,10 @@
 package com.example.hibernatedemo.entity;
 
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +20,7 @@ import javax.persistence.SequenceGenerator;
 /**
  * Created by Jakub krhovják on 10/21/17.
  */
-
+@Audited(targetAuditMode = NOT_AUDITED)
 @Entity(name = "itemDetail")
 public class ItemDetail {
 

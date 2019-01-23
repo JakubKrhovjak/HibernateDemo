@@ -2,6 +2,10 @@ package com.example.hibernatedemo.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.hibernate.envers.Audited;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,14 +20,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
  */
 
 @Entity
+@Audited
 //@Table(name = "item")
 public class Item {
 
@@ -45,7 +48,7 @@ public class Item {
 
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<ItemDetail> itemDetails;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })

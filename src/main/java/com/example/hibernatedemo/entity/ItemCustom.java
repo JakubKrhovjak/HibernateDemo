@@ -1,16 +1,22 @@
 package com.example.hibernatedemo.entity;
 
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
+import org.hibernate.envers.Audited;
+
+import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Created by Jakub krhovják on 10/22/17.
  */
 //@Entity
+@Audited(targetAuditMode = NOT_AUDITED)
 public class ItemCustom {
 
 	@EmbeddedId
