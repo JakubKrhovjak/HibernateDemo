@@ -10,8 +10,8 @@ public interface ItemDao extends JpaRepository<Item, Long> {
 
 //	@Query("delete from itemDetail i where i.item in :items")
 //	public void myDelete(@Param("items") List<Item> items);
-   //@Modifying
+    //@Modifying
 
 
-	void deleteByItemId(Long itemId);
+    void deleteByItemId(Long itemId);
 }

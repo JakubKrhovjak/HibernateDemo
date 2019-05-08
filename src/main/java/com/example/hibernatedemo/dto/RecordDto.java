@@ -5,20 +5,20 @@ package com.example.hibernatedemo.dto;
  */
 public class RecordDto {
 
-	public  long id;
+    public long id;
 
-	private String name;
+    private String name;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public RecordDto(long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+    public RecordDto(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface ItemDetailDao extends JpaRepository<ItemDetail, Long> {
 
-	List<ItemDetail> findByItem(Item item);
+    List<ItemDetail> findByItem(Item item);
 }

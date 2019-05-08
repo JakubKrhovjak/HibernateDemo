@@ -13,10 +13,8 @@
     </root>
 
     <logger name="org.hibernate.SQL" level="debug"/>
-    <logger name="org.hibernate.type" level="ALL" />
+    <logger name="org.hibernate.type" level="ALL"/>
     <logger name="org.hibernate.stat" level="DEBUG"/>
-
-
 
 
 </configuration>

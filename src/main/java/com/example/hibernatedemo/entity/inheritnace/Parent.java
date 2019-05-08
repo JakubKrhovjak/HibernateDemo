@@ -19,38 +19,38 @@ import javax.persistence.SequenceGenerator;
 @Inheritance
 public abstract class Parent {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parent_id_seq")
-	@SequenceGenerator(allocationSize = 1, name = "parent_id_seq", sequenceName = "parent_id_seq")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parent_id_seq")
+    @SequenceGenerator(allocationSize = 1, name = "parent_id_seq", sequenceName = "parent_id_seq")
+    private Long id;
 
-	@Column(insertable = false, updatable = false)
-	@Enumerated(EnumType.STRING)
-	private ChildType type;
+    @Column(insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
+    private ChildType type;
 
-	private String firstName;
+    private String firstName;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public ChildType getType() {
-		return type;
-	}
+    public ChildType getType() {
+        return type;
+    }
 
-	public enum ChildType {
-		NAUGHTY_CHILD, GOOD_CHILD;
-	}
+    public enum ChildType {
+        NAUGHTY_CHILD, GOOD_CHILD;
+    }
 }

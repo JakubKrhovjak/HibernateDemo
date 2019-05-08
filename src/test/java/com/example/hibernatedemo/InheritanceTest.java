@@ -17,39 +17,39 @@ import java.util.List;
 
 public class InheritanceTest extends HibernateDemoApplicationTests {
 
-	@Test
-	public void insert() throws Exception {
-		GoodChild goodChild = new GoodChild();
-		goodChild.setFirstName("goodChild");
-		goodChild.setAge(2);
+    @Test
+    public void insert() throws Exception {
+        GoodChild goodChild = new GoodChild();
+        goodChild.setFirstName("goodChild");
+        goodChild.setAge(2);
 
-		NaughtyChild naughtyChild = new NaughtyChild();
-		naughtyChild.setFirstName("naughtyChild");
-		naughtyChild.setAttribute("Devil");
-		parentDao.save(new ArrayList<>(Arrays.asList(goodChild, naughtyChild)));
-	}
+        NaughtyChild naughtyChild = new NaughtyChild();
+        naughtyChild.setFirstName("naughtyChild");
+        naughtyChild.setAttribute("Devil");
+        parentDao.saveAll(new ArrayList<>(Arrays.asList(goodChild, naughtyChild)));
+    }
 
-	@Test
-	public void select() throws Exception {
-		List<Parent> parents = parentDao.findAll();
-		parents.forEach(parent -> {
-			if(Parent.ChildType.GOOD_CHILD == parent.getType()) {
-				System.err.println(parent.getFirstName());
-			}
-		});
+    @Test
+    public void select() throws Exception {
+        List<Parent> parents = parentDao.findAll();
+        parents.forEach(parent -> {
+            if (Parent.ChildType.GOOD_CHILD == parent.getType()) {
+                System.err.println(parent.getFirstName());
+            }
+        });
 
-	}
+    }
 
-	@Test
-	public void update() throws Exception {
-		List<Parent> parents = parentDao.findAll();
-		parents.forEach(parent -> parent.setFirstName("updated"));
-		parentDao.save(parents);
+    @Test
+    public void update() throws Exception {
+        List<Parent> parents = parentDao.findAll();
+        parents.forEach(parent -> parent.setFirstName("updated"));
+        parentDao.saveAll(parents);
 
-	}
+    }
 
-	@Autowired
-	public void setParentDao(ParentDao parentDao) {
-		this.parentDao = parentDao;
-	}
+    @Autowired
+    public void setParentDao(ParentDao parentDao) {
+        this.parentDao = parentDao;
+    }
 }

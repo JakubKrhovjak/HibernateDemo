@@ -10,13 +10,13 @@ import javax.persistence.Entity;
 @DiscriminatorValue("GOOD_CHILD")
 public class GoodChild extends Parent {
 
-	private Integer age;
+    private Integer age;
 
-	public Integer getAge() {
-		return age;
-	}
+    public Integer getAge() {
+        return age;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }

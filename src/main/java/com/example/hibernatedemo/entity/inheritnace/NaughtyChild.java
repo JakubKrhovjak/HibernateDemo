@@ -10,13 +10,13 @@ import javax.persistence.Entity;
 @DiscriminatorValue("NAUGHTY_CHILD")
 public class NaughtyChild extends Parent {
 
-	private String attribute;
+    private String attribute;
 
-	public String getAttribute() {
-		return attribute;
-	}
+    public String getAttribute() {
+        return attribute;
+    }
 
-	public void setAttribute(String attribute) {
-		this.attribute = attribute;
-	}
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
 }

@@ -14,18 +14,18 @@ import java.util.List;
  * Created by Jakub krhovják on 10/21/17.
  */
 
-public interface RecordDao extends JpaRepository <Record, Long>{
+public interface RecordDao extends JpaRepository<Record, Long> {
 
-	@QueryHints(value = { @QueryHint(name = org.hibernate.annotations.QueryHints.FLUSH_MODE, value = "ALWAYS") })
-	public default void mySave(Record record) {
-		save(record);
-	}
+    @QueryHints(value = {@QueryHint(name = org.hibernate.annotations.QueryHints.FLUSH_MODE, value = "ALWAYS")})
+    public default void mySave(Record record) {
+        save(record);
+    }
 
-	@Query("select new com.example.hibernatedemo.dto.RecordDto(r.id, r.name) from Record r order by r.name desc")
-	List<RecordDto> getRecordDtos(Pageable pageable);
+    @Query("select new com.example.hibernatedemo.dto.RecordDto(r.id, r.name) from Record r order by r.name desc")
+    List<RecordDto> getRecordDtos(Pageable pageable);
 
 
-	@Query(value = "select r.id, r.name from record r order by r.name desc", nativeQuery = true)
-	List<Object[]> getNativeRecordDtos();
+    @Query(value = "select r.id, r.name from record r order by r.name desc", nativeQuery = true)
+    List<Object[]> getNativeRecordDtos();
 
 }

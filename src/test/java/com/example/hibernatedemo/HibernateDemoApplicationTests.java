@@ -21,82 +21,82 @@ import java.util.stream.IntStream;
 @Configuration
 public class HibernateDemoApplicationTests {
 
-	protected RecordDao recordDao;
+    protected RecordDao recordDao;
 
-	protected ParentDao parentDao;
+    protected ParentDao parentDao;
 
-	protected ItemDao itemDao;
+    protected ItemDao itemDao;
 
-	protected ItemDetailDao itemDetailDao;
-
-
-	public void contextLoads() {
-	}
-
-	@org.junit.Test
-	public void insert() throws Exception {
-		IntStream.range(0, 30).forEach(j -> {
-			List<Record> records = new ArrayList<>();
-			IntStream.range(0, 30).forEach(i -> {
-				Record record = new Record();
-				record.setName("name " + i);
-				record.setDetail("detail " + i);
-				records.add(record);
-			});
-
-			API.unchecked(this::sleep);
-			recordDao.save(records);
-		});
-	}
-
-	private boolean sleep() throws Exception {
-		Thread.sleep(1000);
-		return true;
-	}
-
-	@org.junit.Test
-	public void simpleInsert() throws Exception {
-		List<Record> records = new ArrayList<>();
-		IntStream.range(0, 30).forEach(i -> {
-					records.add(createRecord());
-
-				});
-		for(Record record : records) {
-			recordDao.save(record);
-		}
-
-	}
-
-	protected Record createRecord() {
-		Record record = new Record();
-		record.setName("name");
-		record.setDetail("detail");
-		return record;
-	}
+    protected ItemDetailDao itemDetailDao;
 
 
-	@org.junit.Test
-	public void select() throws Exception {
-		recordDao.findAll();
-	}
+    public void contextLoads() {
+    }
 
-	@Autowired
-	public void setRecordDao(RecordDao recordDao) {
-		this.recordDao = recordDao;
-	}
+    @org.junit.Test
+    public void insert() throws Exception {
+        IntStream.range(0, 30).forEach(j -> {
+            List<Record> records = new ArrayList<>();
+            IntStream.range(0, 30).forEach(i -> {
+                Record record = new Record();
+                record.setName("name " + i);
+                record.setDetail("detail " + i);
+                records.add(record);
+            });
 
-	@Autowired
-	public void setParentDao(ParentDao parentDao) {
-		this.parentDao = parentDao;
-	}
+            API.unchecked(this::sleep);
+            recordDao.saveAll(records);
+        });
+    }
 
-	@Autowired
-	public void setItemDao(ItemDao itemDao) {
-		this.itemDao = itemDao;
-	}
+    private boolean sleep() throws Exception {
+        Thread.sleep(1000);
+        return true;
+    }
 
-	@Autowired
-	public void setItemDetailDao(ItemDetailDao itemDetailDao) {
-		this.itemDetailDao = itemDetailDao;
-	}
+    @org.junit.Test
+    public void simpleInsert() throws Exception {
+        List<Record> records = new ArrayList<>();
+        IntStream.range(0, 30).forEach(i -> {
+            records.add(createRecord());
+
+        });
+        for (Record record : records) {
+            recordDao.save(record);
+        }
+
+    }
+
+    protected Record createRecord() {
+        Record record = new Record();
+        record.setName("name");
+        record.setDetail("detail");
+        return record;
+    }
+
+
+    @org.junit.Test
+    public void select() throws Exception {
+        recordDao.findAll();
+    }
+
+    @Autowired
+    public void setRecordDao(RecordDao recordDao) {
+        this.recordDao = recordDao;
+    }
+
+    @Autowired
+    public void setParentDao(ParentDao parentDao) {
+        this.parentDao = parentDao;
+    }
+
+    @Autowired
+    public void setItemDao(ItemDao itemDao) {
+        this.itemDao = itemDao;
+    }
+
+    @Autowired
+    public void setItemDetailDao(ItemDetailDao itemDetailDao) {
+        this.itemDetailDao = itemDetailDao;
+    }
 }

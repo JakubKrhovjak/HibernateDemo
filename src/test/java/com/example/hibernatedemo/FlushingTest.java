@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 public class FlushingTest extends HibernateDemoApplicationTests {
 
-	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
 //	@Before
 //	public void myInitMethod() {
@@ -30,45 +30,45 @@ public class FlushingTest extends HibernateDemoApplicationTests {
 //		//sessionFactory.getCurrentSession().setFlushMode(FlushMode.ALWAYS);
 //	}
 
-	@PersistenceContext(type = PersistenceContextType.EXTENDED)
-	private EntityManager entityManager;
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    private EntityManager entityManager;
 
-	@Test
-	@Transactional
- 	@Rollback(value = false)
-	//@QueryHints(value = { @QueryHint(name = org.hibernate.annotations.QueryHints.FLUSH_MODE, value = FlushMode.ALWAYS) })
-	public void BasicFlush() throws Exception {
-		entityManager.unwrap(Session.class).setFlushMode(FlushMode.ALWAYS);
-		//sessionFactory.openSession().setFlushMode(FlushMode.ALWAYS);
-		Record record = createRecord();
-		recordDao.saveAndFlush(record);
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    //@QueryHints(value = { @QueryHint(name = org.hibernate.annotations.QueryHints.FLUSH_MODE, value = FlushMode.ALWAYS) })
+    public void BasicFlush() throws Exception {
+        entityManager.unwrap(Session.class).setFlushMode(FlushMode.ALWAYS);
+        //sessionFactory.openSession().setFlushMode(FlushMode.ALWAYS);
+        Record record = createRecord();
+        recordDao.saveAndFlush(record);
 
-		GoodChild goodChild = new GoodChild();
-		goodChild.setFirstName("goodChild");
-		goodChild.setAge(2);
+        GoodChild goodChild = new GoodChild();
+        goodChild.setFirstName("goodChild");
+        goodChild.setAge(2);
 
-		NaughtyChild naughtyChild = new NaughtyChild();
-		naughtyChild.setFirstName("naughtyChild");
-		naughtyChild.setAttribute("Devil");
-		parentDao.save(new ArrayList<>(Arrays.asList(goodChild, naughtyChild)));
+        NaughtyChild naughtyChild = new NaughtyChild();
+        naughtyChild.setFirstName("naughtyChild");
+        naughtyChild.setAttribute("Devil");
+        parentDao.saveAll(new ArrayList<>(Arrays.asList(goodChild, naughtyChild)));
 
 //		Record record2 = createRecord();
 //		recordDao.mySave(record2);
 
-		recordDao.findAll();
-		//recordDao.co
-	}
+        recordDao.findAll();
+        //recordDao.co
+    }
 
-	@Test
-	@Transactional(readOnly = true)
+    @Test
+    @Transactional(readOnly = true)
 //	@Transactional
-	public void SelectReadOnly() throws Exception {
-		recordDao.findAll();
-		parentDao.findAll();
-	}
+    public void SelectReadOnly() throws Exception {
+        recordDao.findAll();
+        parentDao.findAll();
+    }
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 }
