@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataSourceConfiguration {
 
-    public void test() {
-
-    }
 
 //    @Bean(destroyMethod = "close")
 //    public DataSource dataSource() {
