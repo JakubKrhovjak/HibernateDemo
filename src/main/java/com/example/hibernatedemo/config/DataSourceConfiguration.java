@@ -12,6 +12,9 @@ public class DataSourceConfiguration {
     public void  testMerge() {
 
     }
+    public void  testMerge() {
+
+    }
 
 //    @Bean(destroyMethod = "close")
 //    public DataSource dataSource() {
