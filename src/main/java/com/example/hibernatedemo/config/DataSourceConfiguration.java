@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Configuration;
 public class DataSourceConfiguration {
 
 
+    public void  testMerge() {
+
+    }
+
 //    @Bean(destroyMethod = "close")
 //    public DataSource dataSource() {
 //        HikariConfig hikariConfig = new HikariConfig();
