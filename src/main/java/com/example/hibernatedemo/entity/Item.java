@@ -1,5 +1,8 @@
 package com.example.hibernatedemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -14,6 +17,8 @@ import java.util.List;
 @Entity
 //@Audited
 //@Table(name = "item")
+@Accessors(chain = true)
+@Data
 public class Item {
 
     @Id
@@ -34,42 +39,18 @@ public class Item {
 
     private String name;
 
+    @JsonIgnoreProperties("item")
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ItemDetail> itemDetails;
 
+    @JsonIgnoreProperties
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "item_custom",
             uniqueConstraints = {@UniqueConstraint(name = "item_custom_pkey", columnNames = {"item_id", "custom_id"})},
             joinColumns = @JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "item_custom_custom_fkey")),
             inverseJoinColumns = @JoinColumn(name = "custom_id", foreignKey = @ForeignKey(name = "item_custom_item_id_fkey"))
     )
-
-    //@OneToMany(mappedBy = "item",  cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     private List<Custom> customs = new ArrayList<>();
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<ItemDetail> getItemDetails() {
-        return itemDetails;
-    }
-
-    public void setItemDetails(List<ItemDetail> itemDetails) {
-        this.itemDetails = itemDetails;
-    }
 
     public List<Custom> getCustoms() {
         return customs;

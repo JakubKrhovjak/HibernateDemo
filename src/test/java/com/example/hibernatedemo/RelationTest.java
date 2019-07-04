@@ -79,7 +79,7 @@ public class RelationTest extends HibernateDemoApplicationTests {
 
         Custom custom = new Custom();
         custom.setName("custom name");
-        item.addCustom(custom);
+//        item.addCustom(custom);
 
         return item;
     }
